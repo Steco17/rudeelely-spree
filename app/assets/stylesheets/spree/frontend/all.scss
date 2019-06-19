@@ -1,8 +1,4 @@
 @import "bootstrap-sprockets"; 
 @import "bootstrap"; 
 
-#logo img {
-width: 20% ; 
-height: auto;
-}
-
+@import "spree/frontend/products" 
