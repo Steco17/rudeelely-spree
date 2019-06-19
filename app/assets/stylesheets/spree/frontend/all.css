@@ -1,0 +1,8 @@
+@import "bootstrap-sprockets"; 
+@import "bootstrap"; 
+
+#logo img {
+width: 20% ; 
+height: auto;
+}
+
