@@ -1,3 +1,13 @@
+<div class="text-center">
+     <%= image_tag 'logo.png', height: 80, alt: 'Arrogant Clothing', class:"mx-auto"%>
+    <div class="btn btn-lg btn-primary btn-block btn-custom-margin">       
+        <%= link_to " Facebook",'', class:"fb-text" %>
+    </div>
+    <div class="signin-separator">
+        <div class="hr"></div>
+        <div class="or-text">Or</div>
+    </div>
+</div>
 <div class="form-group">
     <%= f.label :email, I18n.t('spree.email') %>
     <%= f.email_field :email, class: 'title form-control' %>

@@ -1,10 +1,8 @@
 <% variant = line_item.variant -%>
 <%= order_form.fields_for :line_items, line_item do |item_form| -%>
-  <tr class="<%= cycle('', 'alt') %> line-item">
+  <tr class="<%= cycle('', 'alt') %> line-item ">
     <td class="cart-item-image" data-hook="cart_item_image">
-      <%= link_to(render('spree/shared/image',
-                         image: (variant.gallery.images.first || variant.product.gallery.images.first),
-                         size: :small), variant.product) %>
+      <%= link_to(render('spree/shared/image', image: (variant.gallery.images.first || variant.product.gallery.images.first), size: :small), variant.product) %>
     </td>
     <td class="cart-item-description" data-hook="cart_item_description">
       <h4><%= link_to line_item.name, product_path(variant.product) %></h4>

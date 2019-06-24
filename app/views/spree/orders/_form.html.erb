@@ -1,6 +1,6 @@
 <% order = order_form.object %>
 <%= render 'spree/shared/error_messages', target: order %>
-<table id="cart-detail" class="table" data-hook>
+<table id="cart-detail" class="table table-hover" data-hook>
   <thead>
     <tr data-hook="cart_items_headers">
       <th class="cart-item-description-header" colspan="2"><%= t('spree.item') %></th>
@@ -22,7 +22,7 @@
     <%= render "spree/orders/adjustments" %>
   <% end %>
   <tr class="cart-total">
-    <td colspan="4" align='right'><h5><%= t('spree.total') %></h5></td>
+    <td colspan="4"><h5><%= t('spree.total') %></h5></td>
     <td colspan><h5><%= order.display_total %></h5></td>
     <td></td>
   </tr>

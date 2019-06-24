@@ -1,3 +1,53 @@
 body#signup
     > div
     margin-top: 40px
+
+.signin-top
+    margin-top: 40px
+        
+.fb-text 
+    color: #ffffff
+
+.btn-custom-margin
+    margin-bottom: 1rem
+ 
+.btn-lg
+    font-size: 1.4rem
+    margin-top: 12px
+    
+.signin-separator 
+    width: 100%
+    height: 24px
+    display: block
+    margin-bottom: 0.5rem !important
+    position: relative
+
+
+.signin-separator .hr 
+    width: 100%
+    border-top: 1px solid rgba(120, 120, 120, 0.2) !important
+    margin: 0
+    position: absolute
+    top: 50%
+    left: 0
+    right: 0
+    z-index: 0
+    
+@mixin center-both() 
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+
+
+.signin-separator .or-text 
+    width: 32px //background: #fff;
+    background: #f5F5F1
+    color: #bbb
+    font-size: 14px
+    display: inline-block
+    @include center-both()
+    z-index: 1
+    
+ 
+       
