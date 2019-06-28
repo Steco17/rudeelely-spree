@@ -1,10 +1,10 @@
 <%# no need for thumbnails unless there is more than one image %>
 <% if @product.gallery.images.size > 1 %>
-  <ul id="product-thumbnails" class="thumbnails inline" data-hook>
+  <ul id="product-thumbnails" class="list-group list-group-horizontal thumbnails inline" data-hook>
 
     <% @product.gallery.images.each do |image| %>
       <% next if image.viewable_id != @product.master.id %>
-      <li class='tmb-all tmb-<%= image.viewable_id %>'>
+      <li class='col-12 tmb-all tmb-<%= image.viewable_id %>'>
         <%= link_to(image_tag(image.url(:mini)), image.url(:product)) %>
       </li>
     <% end %>
@@ -12,7 +12,7 @@
     <% if @product.has_variants? %>
       <% @product.gallery.images.each do |image| %>
         <% next if image.viewable_id == @product.master.id %>
-        <li class='vtmb tmb-<%= image.viewable_id %>'>
+        <li class='list-group-item vtmb tmb-<%= image.viewable_id %>'>
           <%= link_to(image_tag(image.url(:mini)), image.url(:product)) %>
         </li>
       <% end %>

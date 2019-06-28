@@ -10,16 +10,10 @@
             <strong class="stock-location-name" data-hook="stock-location-name"><%= ship_form.object.stock_location.name %></strong>
           </h3>
 
-          <table class="stock-contents" data-hook="stock-contents">
-            <colgroup>
-              <col style="width: 10%;" />
-              <col style="width: 60%;" />
-              <col style="width: 10%;" />
-              <col style="width: 20%;" />
-            </colgroup>
+          <table class="stock-contents table" data-hook="stock-contents">           
             <thead>
               <th></th>
-              <th align='left'><%= t('spree.item') %></th>
+              <th><%= t('spree.item') %></th>
               <th><%= t('spree.qty') %></th>
               <th><%= t('spree.price') %></th>
             </thead>
@@ -40,14 +34,13 @@
           </table>
 
           <h5 class="stock-shipping-method-title"><%= t('spree.shipping_method') %></h5>
-          <ul class="radios shipping-methods">
+          <ul class="radios shipping-methods list-group">
             <% ship_form.object.shipping_rates.each do |rate| %>
-              <li class="shipping-method">
-                <label>
+              <li class="shipping-method list-group-item">
+                <span class="rate-cost badge"><%= rate.display_cost %></span>               
                   <%= ship_form.radio_button :selected_shipping_rate_id, rate.id %>
-                  <span class="rate-name"><%= rate.name %></span>
-                  <span class="rate-cost"><%= rate.display_cost %></span>
-                </label>
+                  <span class="rate-name "><%= rate.name %></span>
+                
               </li>
             <% end %>
           </ul>
@@ -60,16 +53,11 @@
           <h3 class="stock-location" data-hook="stock-location">
             <%= t('spree.unshippable_items') %>
           </h3>
-          <table class="stock-contents" data-hook="stock-missing">
-            <colgroup>
-              <col style="width: 10%;" />
-              <col style="width: 60%;" />
-              <col style="width: 10%;" />
-              <col style="width: 20%;" />
-            </colgroup>
+          <table class="stock-contents table" data-hook="stock-missing">
+            
             <thead>
               <th></th>
-              <th align='left'><%= t('spree.item') %></th>
+              <th><%= t('spree.item') %></th>
               <th><%= t('spree.qty') %></th>
               <th><%= t('spree.price') %></th>
             </thead>
@@ -93,10 +81,10 @@
 
     </div>
     <% if Spree::Config[:shipping_instructions] %>
-      <p id="minstrs" data-hook>
+      <div id="minstrs" class="form-group" data-hook>
         <%= form.label :special_instructions, t('spree.shipping_instructions') %><br />
-        <%= form.text_area :special_instructions, cols: 40, rows: 7 %>
-      </p>
+        <%= form.text_area :special_instructions, cols: 40, rows: 7, class: 'form-control' %>
+      </div>
     <% end %>
   </div>
 </fieldset>
@@ -104,5 +92,5 @@
 <br />
 
 <div class="form-buttons" data-hook="buttons">
-  <%= submit_tag t('spree.save_and_continue'), class: 'continue button primary' %>
+  <%= submit_tag t('spree.save_and_continue'), class: 'continue btn btn-success btn-block' %>
 </div>

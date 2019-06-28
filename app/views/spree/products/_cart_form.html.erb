@@ -4,9 +4,9 @@
     <% if @product.variants_and_option_values_for(current_pricing_options).any? %>
       <div id="product-variants" class="columns five alpha">
         <h6 class="product-section-title"><%= t('spree.variants') %></h6>
-        <ul>
+        <ul class="list-group">
           <% @product.variants_and_option_values_for(current_pricing_options).each_with_index do |variant, index| %>
-            <li>
+            <li class="list-group-item">
               <%= radio_button_tag "variant_id", variant.id, index == 0, 'data-price' => variant.price_for(current_pricing_options)  %>
               <%= label_tag "variant_id_#{ variant.id }" do %>
                 <span class="variant-description">

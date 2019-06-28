@@ -1,10 +1,10 @@
-<fieldset id="order_details" data-hook>
+<fieldset id="order_details" data-hook disabled>
   <div class="clear"></div>
   <legend align="center"><%= t('spree.confirm') %></legend>
   <%= render partial: 'spree/shared/order_details', locals: { order: @order } %>
 </fieldset>
 
-<br />
+<br /> 
 
 <div class="form-buttons" data-hook="buttons">
   <% Spree::Frontend::Config[:require_terms_and_conditions_acceptance].tap do |requires_acceptance| %>
@@ -18,7 +18,7 @@
 
     <%= submit_tag t('spree.place_order'),
       disabled: requires_acceptance,
-      class: "continue button primary #{ 'disabled' if requires_acceptance }" %>
+      class: "continue btn btn-primary btn-block #{ 'disabled' if requires_acceptance }" %>
   <% end %>
 
   <script>Spree.disableSaveOnClick();</script>

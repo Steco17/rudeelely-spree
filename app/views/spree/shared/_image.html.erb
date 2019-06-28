@@ -5,7 +5,7 @@
   <% if image_alt = image.try(:alt) %>
     <%= image_tag image_url, alt: image_alt, itemprop: itemprop %>
   <% else %>
-    <%= image_tag image_url, itemprop: itemprop %>
+    <%= image_tag image_url, itemprop: itemprop %> 
   <% end %>
 <% else %>
   <span class="image-placeholder <%= size %>"></span>

@@ -1,3 +1,15 @@
+<div class="jumbotron jumbotron-fluid">
+  <video autoplay muted loop
+    poster="https://firebasestorage.googleapis.com/v0/b/rudeelyarrogantcl.appspot.com/o/intro%2Fposter.png?alt=media&token=d544f08d-71d6-40dd-895d-dbf359243d19">
+    <source src="" data-src="" type="video/webm">
+  </video>
+  <div class="container text-white">
+    <h1 class="display-4">The Rudeeely Arrogant Clothing.</h1>
+    <hr class="my-4">
+    <p class="lead">Fuck Stress & Live Life</p>
+  </div>
+  <!-- /.container -->
+</div>
 <%
   paginated_products = @searcher.retrieve_products if params.key?(:keywords)
   paginated_products ||= products
