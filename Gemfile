@@ -22,6 +22,8 @@ gem 'kaminari-i18n', '~> 0.5.0'
 gem 'routing-filter', '~> 0.6.0'
 gem 'solidus_static_content', github: 'solidusio-contrib/solidus_static_content'
 
+gem "google-cloud-storage", "~> 1.8", require: false
+
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'jquery-rails'
