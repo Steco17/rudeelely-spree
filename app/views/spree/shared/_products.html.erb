@@ -1,76 +1,70 @@
 <div class="jumbotron jumbotron-fluid">
-  <video autoplay muted loop
-    poster="https://firebasestorage.googleapis.com/v0/b/rudeelyarrogantcl.appspot.com/o/intro%2Fposter.png?alt=media&token=d544f08d-71d6-40dd-895d-dbf359243d19">
-    <source
-      src="https://firebasestorage.googleapis.com/v0/b/rudeelyarrogantcl.appspot.com/o/intro%2FV1.webm?alt=media&token=935ec8c2-015d-4c2e-8525-88882fc330b0"
-      data-src="https://firebasestorage.googleapis.com/v0/b/rudeelyarrogantcl.appspot.com/o/intro%2FV1.webm?alt=media&token=935ec8c2-015d-4c2e-8525-88882fc330b0"
-      type="video/webm">
-  </video>
-  <div class="container text-white">
-    <h1 class="display-4">The Rudeeely Arrogant Clothing.</h1>
-    <hr class="my-4">
-    <p class="lead">Fuck Stress & Live Life</p>
-  </div>
-  <!-- /.container -->
+    <video autoplay muted loop poster="https://firebasestorage.googleapis.com/v0/b/rudeelyarrogantcl.appspot.com/o/intro%2Fposter.png?alt=media&token=d544f08d-71d6-40dd-895d-dbf359243d19">
+        <source src="https://firebasestorage.googleapis.com/v0/b/rudeelyarrogantcl.appspot.com/o/intro%2FV1.webm?alt=media&token=935ec8c2-015d-4c2e-8525-88882fc330b0" data-src="https://firebasestorage.googleapis.com/v0/b/rudeelyarrogantcl.appspot.com/o/intro%2FV1.webm?alt=media&token=935ec8c2-015d-4c2e-8525-88882fc330b0" type="video/webm">
+    </video>
+    <div class="container text-white">
+        <h1 class="display-4">The Rudeeely Arrogant Clothing.</h1>
+        <hr class="my-4">
+        <p class="lead">Fuck Stress & Live Life</p>
+    </div>
+    <!-- /.container -->
 </div>
 <%
   paginated_products = @searcher.retrieve_products if params.key?(:keywords)
   paginated_products ||= products
 %>
-
 <% content_for :head do %>
-  <% if paginated_products.respond_to?(:total_pages) %>
-    <%= rel_next_prev_link_tags paginated_products %>
-  <% end %>
+<% if paginated_products.respond_to?(:total_pages) %>
+<%= rel_next_prev_link_tags paginated_products %>
 <% end %>
-
+<% end %>
 <div data-hook="products_search_results_heading">
-  <% if products.empty? %>
+    <% if products.empty? %>
     <div data-hook="products_search_results_heading_no_results_found">
-      <%= t('spree.no_products_found') %>
+        <%= t('spree.no_products_found') %>
     </div>
-  <% elsif params.key?(:keywords) %>
+    <% elsif params.key?(:keywords) %>
     <div data-hook="products_search_results_heading_results_found">
-      <h6 class="search-results-title"><%= t('spree.search_results', keywords: h(params[:keywords])) %></h6>
+        <h6 class="search-results-title">
+            <%= t('spree.search_results', keywords: h(params[:keywords])) %>
+        </h6>
     </div>
-  <% end %>
+    <% end %>
 </div>
-
 <% if products.any? %>
-  <div id="products" class="inline product-listing row" data-hook>
+<div id="products" class="inline product-listing row" data-hook>
     <% products.each do |product| %>
     <div class="col-sm-6 col-md-4">
-      <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
-      <li id="product_<%= product.id %>" class=" thumbnail <%= cycle("alpha", "secondary", "", "omega secondary", name: "classes") %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
-        <% cache(@taxon.present? ? [I18n.locale, current_pricing_options, @taxon, product] : [I18n.locale, current_pricing_options, product]) do %>
-          <div class="product-image">
-            <%= link_to(render('spree/shared/image', image: product.gallery.images.first, size: :small, itemprop: "image"), url, itemprop: 'url') %>
-          </div>
-           <div class="caption">
-             <h3>
-          <%= link_to truncate(product.name, length: 50), url, class: 'info', itemprop: "name", title: product.name %>
-          </h3>
-          <p>
-            <%= link_to  url, class:"btn btn-primary" do %>
-          <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-            <% if price = product.price_for(current_pricing_options) %>
-              <span class="price selling" itemprop="price" content="<%= price.to_d %>">
-                <%= price.to_html %>
-              </span>
+        <% url = spree.product_path(product, taxon_id: @taxon.try(:id)) %>
+        <li id="product_<%= product.id %>" class=" thumbnail <%= cycle(" alpha", "secondary" , "" , "omega secondary" , name: "classes" ) %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
+            <% cache(@taxon.present? ? [I18n.locale, current_pricing_options, @taxon, product] : [I18n.locale, current_pricing_options, product]) do %>
+            <div class="product-image">
+                <%= link_to(render('spree/shared/image', image: product.gallery.images.first, size: :small, itemprop: "image"), url, itemprop: 'url') %>
+            </div>
+            <div class="caption">
+                <h3>
+                    <%= link_to truncate(product.name, length: 50), url, class: 'info', itemprop: "name", title: product.name %>
+                </h3>
+                <p>
+                    <%= link_to  url, class:"btn btn-primary" do %>
+                    <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                        <% if price = product.price_for(current_pricing_options) %>
+                        <span class="price selling" itemprop="price" content="<%= price.to_d %>">
+                            <%= price.to_html %>
+                        </span>
+                        <% end %>
+                        <span itemprop="priceCurrency" content="<%= current_pricing_options.currency %>"></span>
+                    </span>
+                    <%end%>
+                </p>
+            </div>
             <% end %>
-            <span itemprop="priceCurrency" content="<%= current_pricing_options.currency %>"></span>
-          </span>
-          <%end%>
-          </p>
-          </div>
-        <% end %>
-      </li>
-      </div>
+        </li>
+    </div>
     <% end %>
     <% reset_cycle("classes") %>
-    </div>
+</div>
 <% end %>
-
 <% if paginated_products.respond_to?(:total_pages) %>
-  <%= paginate paginated_products %>
+<%= paginate paginated_products %>
 <% end %>
